@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<!-- use RESOURCE_LOCAL because mongodb has no transaction -->
+	<persistence-unit name="collector.database.jpa"
+		transaction-type="RESOURCE_LOCAL">
+		<!-- Use Hibernate OGM provider: configuration will be transparent -->
+		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+		<properties>
+			<property name="hibernate.transaction.jta.platform"
+				value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform" />
+			<property name="hibernate.ogm.datastore.provider" value="mongodb" />
+			<property name="hibernate.ogm.datastore.host" value="localhost" />
+			<property name="hibernate.ogm.datastore.port" value="27017" />
+			<property name="hibernate.ogm.datastore.database" value="autoConfig" />
+			<property name="hibernate.ogm.datastore.create_database"
+				value="true" />
+			<!-- db.addUser({user:"root", pwd:"password",roles:["readWrite", "dbAdmin"]}) -->
+			<!-- <property name="hibernate.ogm.datastore.username" value="root" /> -->
+			<!-- <property name="hibernate.ogm.datastore.password" value="password" 
+				/> -->
+
+		</properties>
+	</persistence-unit>
+</persistence>
